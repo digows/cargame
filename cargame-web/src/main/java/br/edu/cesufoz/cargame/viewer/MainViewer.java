@@ -3,31 +3,47 @@ package br.edu.cesufoz.cargame.viewer;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-import org.glassfish.grizzly.http.server.HttpServer;
-import org.glassfish.grizzly.http.server.NetworkListener;
-import org.glassfish.grizzly.websockets.WebSocketAddOn;
+import org.eclipse.jetty.annotations.AnnotationConfiguration;
+import org.eclipse.jetty.plus.webapp.EnvConfiguration;
+import org.eclipse.jetty.plus.webapp.PlusConfiguration;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.webapp.Configuration;
+import org.eclipse.jetty.webapp.FragmentConfiguration;
+import org.eclipse.jetty.webapp.MetaInfConfiguration;
+import org.eclipse.jetty.webapp.WebAppContext;
+import org.eclipse.jetty.webapp.WebInfConfiguration;
+import org.eclipse.jetty.webapp.WebXmlConfiguration;
 
-public class MainViewer 
+public class MainViewer
 {
+	/**
+	 * 
+	 */
 	private static final Logger LOG = Logger.getLogger(MainViewer.class.getName());
-	
+
 	/**
 	 * @param args
-	 * @throws IOException 
+	 * @throws Exception 
+	 * @throws IOException
 	 */
-	public static void main(String[] args) throws IOException 
+	public static void main(String[] args) throws Exception 
 	{
-		final HttpServer httpServer = HttpServer.createSimpleServer("src/main/webapp", 8080);
+		final WebAppContext appContext = new WebAppContext();
+		appContext.setContextPath("/cargame");
+		appContext.setResourceBase("src/main/webapp");
+		appContext.setConfigurations(new Configuration[] 
+				{
+					new AnnotationConfiguration(), new WebXmlConfiguration(), new WebInfConfiguration(),
+		            new PlusConfiguration(), new MetaInfConfiguration(),
+		            new FragmentConfiguration(), new EnvConfiguration()
+				}
+		);
+
+		final Server server = new Server(8080);
+        server.setHandler(appContext);	
 		
-		for ( NetworkListener listener : httpServer.getListeners() ) 
-		{
-		    listener.registerAddOn(new WebSocketAddOn());
-		}
-		
-		httpServer.start();
+		server.start();
 		LOG.info("Main Viewer Server started");
-		
-		System.in.read();
-		httpServer.stop();
+		server.join();
 	}
 }
