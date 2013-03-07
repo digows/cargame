@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Insert title here</title>
+<script type="text/javascript">
+	
+	var socket = new WebSocket("ws://localhost:8080/carstreaming");
+	socket.onopen = function(event) { 
+		console.log(event);
+		console.log('OPEN: ' + socket.readyState); 
+	}
+	socket.onmessage = function (event) {
+		console.log(event);
+		console.log('MESSAGE: ' + event.data); 
+	}
+	socket.onerror = function (event) {
+		console.log(event);
+		console.log('ERROR: ' + event.data); 
+	}
+	socket.onclose = function (event) {
+		console.log(event);
+		console.log('CLOSED: ' + socket.readyState); 
+	}
+	
+	function onClick() 
+	{
+	    socket.send("YAY!");
+	}
+</script>
+</head>
+<body>
+	<button onclick="onClick()"></button>
+</body>
+</html>
