@@ -12,14 +12,6 @@ public class CarNotificationWebSocket
 {
 	/**
 	 * 
-	 */
-	public CarNotificationWebSocket() 
-	{
-		System.out.println(this);
-	}
-	
-	/**
-	 * 
 	 * @param message
 	 */
 	@OnWebSocketMessage
