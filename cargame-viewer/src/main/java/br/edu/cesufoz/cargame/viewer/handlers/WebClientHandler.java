@@ -8,7 +8,7 @@ import org.eclipse.jetty.websocket.api.annotations.WebSocket;
  * @author rodrigo
  */
 @WebSocket
-public class ClientWebHandler 
+public class WebClientHandler 
 {
 	/**
 	 * 

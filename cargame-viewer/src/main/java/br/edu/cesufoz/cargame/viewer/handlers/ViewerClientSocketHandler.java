@@ -7,12 +7,12 @@ import java.util.logging.Logger;
 
 import br.edu.cesufoz.cargame.entity.Car;
 
-public class ClientSocketHandler extends Thread 
+public class ViewerClientSocketHandler extends Thread 
 {
 	/**
 	 * 
 	 */
-	private static final Logger LOG = Logger.getLogger(ClientSocketHandler.class.getName());
+	private static final Logger LOG = Logger.getLogger(ViewerClientSocketHandler.class.getName());
 	
 	/**
 	 * 
@@ -27,7 +27,7 @@ public class ClientSocketHandler extends Thread
 	/**
 	 * 
 	 */
-	public ClientSocketHandler( int port ) 
+	public ViewerClientSocketHandler( int port ) 
 	{
 		this.port = port;
 	}
@@ -45,10 +45,10 @@ public class ClientSocketHandler extends Thread
 			this.serverSocket = new ServerSocket(port);
 			LOG.info("Socket Server started");
 			
-			while (true) 
+			while (true)
 			{
 				final Socket socket = serverSocket.accept();
-				LOG.info("The web client conected.");
+				LOG.info("The viewer client conected.");
 				
 				while ( socket.isConnected() && !socket.isClosed() ) 
 				{
