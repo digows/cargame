@@ -17,8 +17,8 @@ import org.eclipse.jetty.webapp.WebInfConfiguration;
 import org.eclipse.jetty.webapp.WebXmlConfiguration;
 import org.eclipse.jetty.websocket.server.WebSocketHandler;
 
-import br.edu.cesufoz.cargame.viewer.handlers.ClientSocketHandler;
-import br.edu.cesufoz.cargame.viewer.handlers.ClientWebHandler;
+import br.edu.cesufoz.cargame.viewer.handlers.ViewerClientSocketHandler;
+import br.edu.cesufoz.cargame.viewer.handlers.WebClientHandler;
 
 public class MainViewer
 {
@@ -30,6 +30,7 @@ public class MainViewer
 	/**
 	 * @param args[0] web server port
 	 * @param args[1] socket server port
+	 * @param args[2] web server context
 	 * 
 	 * @throws Exception 
 	 * @throws IOException
@@ -66,7 +67,7 @@ public class MainViewer
 				}
 		);
 		
-		final WebSocketHandler webSocketHandler = new WebSocketHandler.Simple(ClientWebHandler.class);
+		final WebSocketHandler webSocketHandler = new WebSocketHandler.Simple(WebClientHandler.class);
 
         final HandlerList handlers = new HandlerList();
         handlers.setHandlers(new Handler[]{webAppContext, webSocketHandler});
@@ -84,6 +85,6 @@ public class MainViewer
 	 */
 	public void startSocketServer( int port ) throws Exception
 	{
-		new ClientSocketHandler(port).start();
+		new ViewerClientSocketHandler(port).start();
 	}
 }

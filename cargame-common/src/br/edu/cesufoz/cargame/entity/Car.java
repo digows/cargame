@@ -42,7 +42,7 @@ public class Car implements Serializable
 	/**
 	 * 
 	 */
-	public Car(String id, float x, float y, float angle, String playerName, Calendar created) 
+	public Car(String id, float x, float y, float angle, String playerName) 
 	{
 		super();
 		this.id = id;
@@ -50,7 +50,18 @@ public class Car implements Serializable
 		this.y = y;
 		this.angle = angle;
 		this.playerName = playerName;
-		this.created = created;
+		this.created = Calendar.getInstance();
+	}
+	
+	/**
+	 * 
+	 */
+	public Car(String id, String playerName) 
+	{
+		super();
+		this.id = id;
+		this.playerName = playerName;
+		this.created = Calendar.getInstance();
 	}
 	
 	/**
@@ -62,6 +73,7 @@ public class Car implements Serializable
 		this.x = x;
 		this.y = y;
 		this.angle = angle;
+		this.created = Calendar.getInstance();
 	}
 
 	
