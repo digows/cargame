@@ -1,19 +1,49 @@
 package br.edu.cesufoz.cargame.entity;
 
+import java.io.Serializable;
 import java.util.Calendar;
-import java.util.UUID;
 
-public class Car {
-
-	private String id = UUID.randomUUID().toString();
+/**
+ * 
+ * @author rodrigofraga
+ */
+public class Car implements Serializable 
+{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8299589857855226706L;
+	
+	/**
+	 * 
+	 */
+	private String id;
+	/**
+	 * 
+	 */
 	private float x;
+	/**
+	 * 
+	 */
 	private float y;
+	/**
+	 * 
+	 */
 	private float angle;
+	/**
+	 * 
+	 */
 	private String playerName;
+	/**
+	 * 
+	 */
 	private Calendar created;
 	
-	public Car(String id, float x, float y, float angle, String playerName,
-			Calendar created) {
+	/**
+	 * 
+	 */
+	public Car(String id, float x, float y, float angle, String playerName, Calendar created) 
+	{
 		super();
 		this.id = id;
 		this.x = x;
@@ -23,13 +53,18 @@ public class Car {
 		this.created = created;
 	}
 	
-	public Car(float x, float y, float angle) {
+	/**
+	 * 
+	 */
+	public Car(float x, float y, float angle) 
+	{
 		super();
 		this.x = x;
 		this.y = y;
 		this.angle = angle;
 	}
 
+	
 	public String getId() {
 		return id;
 	}
