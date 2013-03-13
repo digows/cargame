@@ -26,7 +26,7 @@ public class MainServer
 	{
 		final ServerSocket serverSocket = new ServerSocket(1230);
 		
-		final Car car = new Car(UUID.randomUUID().toString(), "My Car");
+		final Car car = new Car(UUID.randomUUID().toString(), "My Carr");
 		
 		final Socket socket = serverSocket.accept();
 		
