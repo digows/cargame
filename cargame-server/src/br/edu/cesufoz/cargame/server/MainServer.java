@@ -24,17 +24,18 @@ public class MainServer
 	 */
 	public static void main(String[] args) throws UnknownHostException, IOException, InterruptedException 
 	{
-		final ServerSocket serverSocket = new ServerSocket(1230);
+		final ServerSocket serverSocket = new ServerSocket(12345);
 		
 		final Car car = new Car(UUID.randomUUID().toString(), "My Carr");
 		
 		final Socket socket = serverSocket.accept();
 		
+		//FIXME Remove this loop
 		while ( socket.isConnected() && !socket.isClosed() )
 		{
 			car.setAngle(0);
-			car.setX( new Random().nextFloat() );
-			car.setY( new Random().nextFloat() );
+			car.setX( new Random().nextInt(200) );
+			car.setY( new Random().nextInt(200) );
 			
 			final ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
 			objectOutputStream.writeObject(car);

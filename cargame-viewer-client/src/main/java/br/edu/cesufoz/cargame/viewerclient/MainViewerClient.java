@@ -53,7 +53,7 @@ public class MainViewerClient
 			}
 			
 			System.out.println("=====================================");
-			Thread.sleep(4000);
+			Thread.sleep(2000);
 		}
 	}
 	

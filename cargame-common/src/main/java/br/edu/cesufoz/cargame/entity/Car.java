@@ -42,6 +42,14 @@ public class Car implements Serializable
 	/**
 	 * 
 	 */
+	public Car() 
+	{
+		this.created = Calendar.getInstance();
+	}
+	
+	/**
+	 * 
+	 */
 	public Car(String id, float x, float y, float angle, String playerName) 
 	{
 		super();
@@ -74,6 +82,59 @@ public class Car implements Serializable
 		this.y = y;
 		this.angle = angle;
 		this.created = Calendar.getInstance();
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Float.floatToIntBits(angle);
+		result = prime * result + ((created == null) ? 0 : created.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result
+				+ ((playerName == null) ? 0 : playerName.hashCode());
+		result = prime * result + Float.floatToIntBits(x);
+		result = prime * result + Float.floatToIntBits(y);
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Car other = (Car) obj;
+		if (Float.floatToIntBits(angle) != Float.floatToIntBits(other.angle))
+			return false;
+		if (created == null) {
+			if (other.created != null)
+				return false;
+		} else if (!created.equals(other.created))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (playerName == null) {
+			if (other.playerName != null)
+				return false;
+		} else if (!playerName.equals(other.playerName))
+			return false;
+		if (Float.floatToIntBits(x) != Float.floatToIntBits(other.x))
+			return false;
+		if (Float.floatToIntBits(y) != Float.floatToIntBits(other.y))
+			return false;
+		return true;
 	}
 
 	

@@ -1,4 +1,4 @@
-package br.edu.cesufoz.cargame.viewer.handlers;
+package br.edu.cesufoz.cargame.viewer.managers;
 
 import java.io.ObjectInputStream;
 import java.net.ServerSocket;
@@ -7,12 +7,12 @@ import java.util.logging.Logger;
 
 import br.edu.cesufoz.cargame.entity.Car;
 
-public class ViewerClientSocketHandler extends Thread 
+public class ViewerClientSocketManager extends Thread 
 {
 	/**
 	 * 
 	 */
-	private static final Logger LOG = Logger.getLogger(ViewerClientSocketHandler.class.getName());
+	private static final Logger LOG = Logger.getLogger(ViewerClientSocketManager.class.getName());
 	
 	/**
 	 * 
@@ -27,7 +27,7 @@ public class ViewerClientSocketHandler extends Thread
 	/**
 	 * 
 	 */
-	public ViewerClientSocketHandler( int port ) 
+	public ViewerClientSocketManager( int port ) 
 	{
 		this.port = port;
 	}
@@ -50,13 +50,16 @@ public class ViewerClientSocketHandler extends Thread
 				final Socket socket = serverSocket.accept();
 				LOG.info("The viewer client conected.");
 				
+				//FIXME Remove this loop and put the NIO.
 				while ( socket.isConnected() && !socket.isClosed() ) 
 				{
 					if ( socket.getInputStream().available() > 0 )
 					{
 						final ObjectInputStream objectOutputStream = new ObjectInputStream( socket.getInputStream() );
 						final Car car = (Car) objectOutputStream.readObject();
-						LOG.info("Received a car: "+car);						
+						
+						LOG.info("Received a car: "+car);
+						WebClientManager.pushNewMessage(car);
 					}
 				}
 			}

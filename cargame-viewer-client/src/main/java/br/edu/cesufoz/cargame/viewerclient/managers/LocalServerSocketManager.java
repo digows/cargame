@@ -52,6 +52,7 @@ public class LocalServerSocketManager extends Thread
 			this.socket = new Socket(serverName, port);
 			LOG.info("Local server connected: "+serverName);
 
+			//FIXME Remove this loop and use NIO.
 			while ( socket.isConnected() && !socket.isClosed() ) 
 			{
 				if ( socket.getInputStream().available() > 0 )
