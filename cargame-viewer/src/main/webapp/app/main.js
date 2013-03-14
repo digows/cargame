@@ -1,11 +1,11 @@
 'use strict';
 
 // Declare app level module which depends on filters, and services
-angular.module('cargame', []).config(
+angular.module('cargame', ['cargame.directives']).config(
 		[ '$routeProvider', function($routeProvider) {
 			$routeProvider.when('/', {
-				templateUrl : 'app/views/home/home.html',
-				controller : HomeController
+				templateUrl : 'app/views/speedway/canvas.html',
+				controller : CanvasController
 			});
 //			$routeProvider.when('/view/:id', {
 //				templateUrl : 'partials/view.html',

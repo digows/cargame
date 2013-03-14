@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:ng="http://angularjs.org" 
-	lang="en" ng-app="cargame">
+<html xmlns:ng="http://angularjs.org" lang="en" ng-app="cargame">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII"/>
 	<meta name="description" content="Car Game App">
     <meta name="viewport" content="width=device-width">
+    <meta name="fragment" content="!" />
 	<title>Car Game</title>
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700" rel="stylesheet"/>
 	<link rel="stylesheet" href="static/css/normalize.css">
@@ -21,14 +21,17 @@
 	
 	<div ng-view></div>
 	
+	<div ng-include="'app/views/common/footer.html'"></div>
+	
 	<!-- Libraries -->
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular-resource.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular-resource.js"></script>
 	
 	<!-- Controllers -->
 	<script type="text/javascript" src="app/main.js"></script>
-	<script type="text/javascript" src="app/controllers/home-controller.js"></script>
+	<script type="text/javascript" src="app/directives.js"></script>
+	<script type="text/javascript" src="app/controllers/canvas-controller.js"></script>
 	
-	<div ng-include="'app/views/common/footer.html'"></div>
 </body>
 </html>
