@@ -57,10 +57,22 @@ angular.module('cargame.directives', []).directive('appVersion', function() {
 		template : '<canvas/>',
 		restrict : 'E',
 		link : function(scope, element, attrs) {
-			console.log(scope);
-			console.log(element);
-			console.log(attrs);
-			console.log(attrs.data);
+			
+			// watch the expression, and update the UI on change.
+			scope.$watch(scope.cars, function(cars) {
+				if (cars == null) return;
+				updateModel(cars);
+			});
+
+			function updateModel(cars) {
+				if ( cars == null ) return;
+				
+				for ( var i = 0; i<cars.length; i++ ) {
+					console.log(cars[i]);
+				}
+			}
+			
+			updateModel(scope.cars);
 		}
 	}
 });
