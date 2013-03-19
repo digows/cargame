@@ -1,6 +1,21 @@
 <!DOCTYPE html>
-<speedway>
+<speedway id="speedway">
 </speedway>
+
+<ol class="leaderboard">
+	<li ng-repeat="car in cars">
+
+		<div class="label">
+			{{car.playerName}}
+		</div>
+
+		<div class="position">
+			<span class="coordinate">{{ car.x }}px</span>
+			<span class="coordinate">{{ car.y }}px</span>
+			<span class="coordinate">{{ car.angle }} grau(s)</span>
+		</div>
+	</li>
+</ol>
 <!--
 style="border: 1px solid #000000; width: 80%; height: 80%;" data-provider="{{cars}}" 
- --> 
+ -->

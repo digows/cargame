@@ -5,7 +5,7 @@ angular.module('cargame', ['cargame.directives']).config(
 		[ '$routeProvider', function($routeProvider) {
 			$routeProvider.when('/', {
 				templateUrl : 'app/views/speedway/canvas.html',
-				controller : CanvasController
+				controller : SpeedwayController
 			});
 //			$routeProvider.when('/view/:id', {
 //				templateUrl : 'partials/view.html',
