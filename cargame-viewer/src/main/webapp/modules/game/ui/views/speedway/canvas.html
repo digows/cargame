@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<<html>
+	<!--
+	<speedway id="speedway">
+		<p> You don't support Canvas. </p>
+	</speedway>
+	 -->
+	<canvas id="speedway" width='800' height='600' style="background-color:#333; display:table; margin:0 auto;"></canvas>
+	
+	<ol class="leaderboard">
+		<li ng-repeat="car in cars">
+	
+			<div class="label">
+				{{car.playerName}}
+			</div>
+	
+			<div class="position">
+				<span class="coordinate">{{ car.x }}px</span>
+				<span class="coordinate">{{ car.y }}px</span>
+				<span class="coordinate">{{ car.angle }} grau(s)</span>
+			</div>
+		</li>
+	</ol>
+	<!-- Libraries -->
+	<script type="text/javascript" src="assets/libs/box2dweb-2.1.a.3.min.js"></script>
+	<script type="text/javascript" src="modules/game/ui/controls/ca.js"></script>
+</html>
