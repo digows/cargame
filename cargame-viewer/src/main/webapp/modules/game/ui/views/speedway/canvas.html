@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-<<html>
-	<!--
-	<speedway id="speedway">
+<html>
+	<speedway id="speedway" width="400" height="300" style="background-color:#333; display:table; margin:0 auto;">
 		<p> You don't support Canvas. </p>
 	</speedway>
-	 -->
-	<canvas id="speedway" width='800' height='600' style="background-color:#333; display:table; margin:0 auto;"></canvas>
 	
 	<ol class="leaderboard">
 		<li ng-repeat="car in cars">
@@ -21,7 +18,4 @@
 			</div>
 		</li>
 	</ol>
-	<!-- Libraries -->
-	<script type="text/javascript" src="assets/libs/box2dweb-2.1.a.3.min.js"></script>
-	<script type="text/javascript" src="modules/game/ui/controls/ca.js"></script>
 </html>
