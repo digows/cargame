@@ -64,5 +64,4 @@ function SpeedwayController($scope) {
 //		playerName : "Player10"
 //	}
 			];
-	
 }

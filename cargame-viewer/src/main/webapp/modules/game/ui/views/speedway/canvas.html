@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html>
-	<speedway id="speedway" width="400" height="300" style="background-color:#333; display:table; margin:0 auto;">
+	<speedway id="speedway" width="400" height="300" 
+		style="background-color:#333; display:table; margin:0 auto;">
 		<p> You don't support Canvas. </p>
 	</speedway>
 	
 	<ol class="leaderboard">
 		<li ng-repeat="car in cars">
-	
 			<div class="label">
 				{{car.playerName}}
 			</div>
-	
 			<div class="position">
-				<span class="coordinate">{{ car.x }}px</span>
-				<span class="coordinate">{{ car.y }}px</span>
-				<span class="coordinate">{{ car.angle }} grau(s)</span>
+				<span class="coordinate">{{car.x}}px</span>
+				<span class="coordinate">{{car.y}}px</span>
+				<span class="coordinate">{{car.angle}} grau(s)</span>
 			</div>
 		</li>
 	</ol>
