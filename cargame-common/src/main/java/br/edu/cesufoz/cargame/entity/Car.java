@@ -138,6 +138,15 @@ public class Car implements Serializable
 	}
 
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Car [id=" + id + ", x=" + x + ", y=" + y + ", angle=" + angle
+				+ ", playerName=" + playerName +"]";
+	}
+
 	public String getId() {
 		return id;
 	}

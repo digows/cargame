@@ -6,6 +6,8 @@ function SpeedwayController($scope) {
 	
 	var socket = null;
 	
+	$scope.cars = new Array();
+	
 	$scope.connectToServer = function() {
 		LOG.debug("connectToServer");
 		
@@ -22,7 +24,25 @@ function SpeedwayController($scope) {
 	};
 	function onSocketMessage(event) {
 		console.log(event);
-		console.log('MESSAGE: ' + event.data); 
+		console.log(event.data);
+		
+		if ( event.data == null ) return;
+		
+		var car = $.parseJSON( event.data );
+		var currentCars = $scope.cars;
+		
+		//If enter in the loop, subscribe
+		for (var i = 0; i<currentCars.lenght; i++) {
+			if ( car.id == currentCars[i].id ) {
+				currentCars[i] = car;
+				$scope.cars = currentCars;
+				return;
+			}
+		}
+		
+		//Else
+		currentCars.push(car);
+		$scope.cars = currentCars;
 	};
 	function onSocketError(event) {
 		console.log(event);
@@ -35,14 +55,14 @@ function SpeedwayController($scope) {
 	
 	$scope.connectToServer();
 	
-	$scope.cars = [
-	        {id:"2131-1123-13dfg3411-3131", x:0, y:0, angle:0, playerName:"Player01"},
-	        {id:"2131-1123-13341dfgd1-3131", x:0, y:50, angle:90, playerName:"Player02"},
-	        {id:"2131-112dfgd3-133411-3131", x:100, y:100, angle:90, playerName:"Player03"},
-	        {id:"213gdfg1-1123-133411-3131", x:100, y:100, angle:180, playerName:"Player04"},
-	        {id:"213asd1-1123-133411-3131", x:100, y:200, angle:180, playerName:"Player05"},
-	        {id:"213asd1-1123-133411-3131", x:100, y:200, angle:270, playerName:"Player06"},
-	        {id:"213asd1-1123-133411-3131", x:200, y:200, angle:270, playerName:"Player07"},
-	        {id:"1123-133411-3131", x:400, y:100, angle:0, playerName:"Player08"},
-	    ];
+//	$scope.cars = [
+//	        {id:"2131-1123-13dfg3411-3131", x:0, y:0, angle:0, playerName:"Player01"},
+//	        {id:"2131-1123-13341dfgd1-3131", x:0, y:50, angle:90, playerName:"Player02"},
+//	        {id:"2131-112dfgd3-133411-3131", x:100, y:100, angle:90, playerName:"Player03"},
+//	        {id:"213gdfg1-1123-133411-3131", x:100, y:100, angle:180, playerName:"Player04"},
+//	        {id:"213asd1-1123-133411-3131", x:100, y:200, angle:180, playerName:"Player05"},
+//	        {id:"213asd1-1123-133411-3131", x:100, y:200, angle:270, playerName:"Player06"},
+//	        {id:"213asd1-1123-133411-3131", x:200, y:200, angle:270, playerName:"Player07"},
+//	        {id:"1123-133411-3131", x:400, y:100, angle:0, playerName:"Player08"},
+//	    ];
 }
