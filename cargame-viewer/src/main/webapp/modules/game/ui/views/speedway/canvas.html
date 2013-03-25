@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
-	<speedway id="speedway" width="400" height="300" 
+	<div>
+		<button ng-click="{{connectToServer}}">Connect</button>
+	</div>
+	
+	<speedway id="speedway" width="800" height="400" 
 		style="background-color:#333; display:table; margin:0 auto;">
 		<p> You don't support Canvas. </p>
 	</speedway>
@@ -11,9 +15,9 @@
 				{{car.playerName}}
 			</div>
 			<div class="position">
-				<span class="coordinate">{{car.x}}px</span>
-				<span class="coordinate">{{car.y}}px</span>
-				<span class="coordinate">{{car.angle}} grau(s)</span>
+				<span class="coordinate">X: {{car.x}}px</span>
+				<span class="coordinate">Y: {{car.y}}px</span>
+				<span class="coordinate">A: {{car.angle}}</span>
 			</div>
 		</li>
 	</ol>

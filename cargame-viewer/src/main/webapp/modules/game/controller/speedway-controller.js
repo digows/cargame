@@ -1,67 +1,48 @@
 'use strict';
 
 function SpeedwayController($scope) {
+
+	var LOG = new Log(Log.DEBUG, Log.consoleLogger);
 	
-	$scope.cars = [ {
-		id : "2131-1123-133411-3131",
-		x : 0,
-		y : 0,
-		angle : 0,
-		playerName : "Player01"
-	}//, {
-//		id : "123123-23424-131-3196531",
-//		x : 200,
-//		y : 5,
-//		angle : 0,
-//		playerName : "Player02"
-//	}, {
-//		id : "123123-187863-155751-12333",
-//		x : 80,
-//		y : 95,
-//		angle : 270,
-//		playerName : "Player03"
-//	}, {
-//		id : "123123-187863-123123-358955",
-//		x : 125,
-//		y : 95,
-//		angle : 270,
-//		playerName : "Player04"
-//	}, {
-//		id : "123123-34535-155751-358955",
-//		x : 80,
-//		y : 120,
-//		angle : 180,
-//		playerName : "Player05"
-//	}, {
-//		id : "123123-45678-155751-4546",
-//		x : 45,
-//		y : 45,
-//		angle : 90,
-//		playerName : "Player06"
-//	}, {
-//		id : "123123-4566-77554-45666",
-//		x : 74,
-//		y : 14,
-//		angle : 90,
-//		playerName : "Player07"
-//	}, {
-//		id : "345345345-456562-155751-358955",
-//		x : 97,
-//		y : 64,
-//		angle : 0,
-//		playerName : "Player08"
-//	}, {
-//		id : "345674-187863-345345-6456456",
-//		x : 14,
-//		y : 6,
-//		angle : 0,
-//		playerName : "Player09"
-//	}, {
-//		id : "23423-32423-657657-5677564",
-//		x : 134,
-//		y : 23,
-//		angle : 90,
-//		playerName : "Player10"
-//	}
-			];
+	var socket = null;
+	
+	$scope.connectToServer = function() {
+		LOG.debug("connectToServer");
+		
+		socket = new WebSocket("ws://"+window.document.location.host);
+		socket.onopen = onSocketOpen;
+		socket.onmessage = onSocketMessage;
+		socket.onerror = onSocketError;
+		socket.onclose = onSocketClose;
+	};
+	
+	function onSocketOpen(event) { 
+		console.log(event);
+		console.log('OPEN: ' + socket.readyState); 
+	};
+	function onSocketMessage(event) {
+		console.log(event);
+		console.log('MESSAGE: ' + event.data); 
+	};
+	function onSocketError(event) {
+		console.log(event);
+		console.log('ERROR: ' + event.data); 
+	};
+	function onSocketClose(event) {
+		console.log(event);
+		console.log('CLOSED: ' + socket.readyState);
+	};
+	
+	$scope.connectToServer();
+	
+	$scope.cars = [
+	        {id:"2131-1123-13dfg3411-3131", x:0, y:0, angle:0, playerName:"Player01"},
+	        {id:"2131-1123-13341dfgd1-3131", x:0, y:50, angle:90, playerName:"Player02"},
+	        {id:"2131-112dfgd3-133411-3131", x:100, y:100, angle:90, playerName:"Player03"},
+	        {id:"213gdfg1-1123-133411-3131", x:100, y:100, angle:180, playerName:"Player04"},
+	        {id:"213asd1-1123-133411-3131", x:100, y:200, angle:180, playerName:"Player05"},
+	        {id:"213asd1-1123-133411-3131", x:100, y:200, angle:270, playerName:"Player06"},
+	        {id:"213asd1-1123-133411-3131", x:200, y:200, angle:270, playerName:"Player07"},
+	        {id:"1123-133411-3131", x:400, y:100, angle:0, playerName:"Player08"},
+	    ];
 }

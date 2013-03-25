@@ -12,23 +12,20 @@ angular.module('speedway-directive', []).directive('speedway', function() {
 		link : function(scope, element, attrs) {
 			
 			var canvas = element[0];
-			
 			var speedwayCanvas = new SpeedwayCanvas( canvas );
-			speedwayCanvas.start();
 			
-			// watch the expression, and update the UI on change.
-			scope.$watch(scope.cars, function(cars) {
+			function updateModel( cars ) {
 				if ( cars == null ) return;
-				//updateModel(cars);
-			});
+				
+				speedwayCanvas.clear();
+				for ( var i = 0; i<cars.length; i++ ) {
+					speedwayCanvas.drawCar(cars[i]);					
+				}
+			};
+
+			scope.$watch(scope.cars, updateModel);
 			
-//			function updateModel(cars) {
-//				if ( cars == null ) return;
-//				
-//				for ( var i = 0; i<cars.length; i++ ) {
-//					createOrUpdateCar(cars[i]);
-//				}
-//			}
+			updateModel(scope.cars);
 		}
 	};
 });
